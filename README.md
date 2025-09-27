@@ -20,9 +20,18 @@ Think of it as a more active ACE Unconscious state, you can still communicate an
 
 ## How does it work? | The Medium Version
 ### The basics
-When a player is hit, BAL checks how wounded each of their legs are, based on if it has a fracture and/or the amount, size and types of ace wounds they have taken. 
+*If something is in Italics, it means that there is a CBA setting to enable/disable it.*
 
-It then compares how wounded each leg is to the other, as well as some factors that effect the entire body like pain, and then runs some logic to determine if the player should be incapacitated.
+Whenever a player is wounded, BAL first checks if either, or both, of their legs have been wounded. 
+
+If so, BAL will then create a list of all of the unbandaged *and bandgaed* ACE wounds on the leg that was wounded and assigns each wound with its corrasponding "Wound Level"
+Each combination of size and type (Avulsion, Velocity Wound, Bruise ect.) of ACE wound is assigned one of 5 "Wound Levels" (Ignored, Minor, Major, Critical, Catastrophic) via the CBA settings.
+E.G. A Small Avulsion can be set to "Ignored", a Mediunm Avulsion can be set to "Minor" wound and a Large Avulsion can be a "Major" wound. 
+It then *finds the wound with the highest assigned "Wound Level" (Assuming "Stackable Wounds" isnt enabled, which needs its own section)* and then saves the "Leg State" of that leg to that Wound Level. 
+E.G. If the left leg has a Large Avulsion, then its "Wound Level" is set to be "Major" regardless how many other "Major" (or below) wounds the leg has. 
+
+It then gets the "Leg State" of each leg, using the saved one if one of the legs werent wounded, *as well as the "Body State"*.
+as well as some factors that effect the entire body like pain, and then runs some logic to determine if the player should be incapacitated.
 
 If they should be incapacitated, the player will then fall over, scream out in pain and will be unable to get back up until their wounds have been healed.  
 If the player attempts to stand up before their wounds are healed, they will simply fall back down onto the ground. 
@@ -31,6 +40,9 @@ If the player attempts to stand up before their wounds are healed, they will sim
 Rather than use a threshold system like ACE, BAL relies on a 5 tiered "Wound Level" system in order to determine how wounded the player is.
 Each type and size of ACE wound is assigned one of these 5 levels, through the CBA settings, which BAL uses to determine how wounded each leg is, and if the wounds are sufficent enough to incapacitate the player. 
 
+### Stackable Wounds
+
+### Body State
 
 MOVE TO THE "LONG" EXPLANATION:
 BAL uses two main systems in order to check if the player should be incapacitated, and to apply the incap
