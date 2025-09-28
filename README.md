@@ -18,7 +18,7 @@ Think of it as a more active ACE Unconscious state, you can still communicate an
 * Funny Ragdolls!
 * The tears of your Players!
 
-# How does it work?
+# What causes you to become Incapacitated?
 ### -----------------------------------  
 A player will become incapacitated when they have taken sufficient damage in one or both of their legs, while also factoring in the players pain, bleed rate and blood loss to a lesser degree.
 
@@ -56,11 +56,6 @@ If the player attempts to stand up before their wounds are healed, they will sim
 ## Wound Levels
 Break A Leg relies on a 5 tiered "Wound Level" system in order to determine how wounded the player is, rather than the somewhat arbitrary damage thresholds like the rest of ACE or AWR. 
 Each combination of size and type (Avulsion, Velocity Wound, Bruise ect.) of ACE wound is assigned one of 5 "Wound Levels" (Ignored, Minor, Major, Critical, Catastrophic) via the CBA settings. which BAL uses to determine how wounded each leg is, and if the wounds are sufficent enough to incapacitate the player. 
-
-### Stacking Wounds
-
-
-## Body State
 
 MOVE TO THE "LONG" EXPLANATION:
 BAL uses two main systems in order to check if the player should be incapacitated, and to apply the incap
