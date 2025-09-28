@@ -18,13 +18,12 @@ Think of it as a more active ACE Unconscious state, you can still communicate an
 * Funny Ragdolls!
 * The tears of your Players!
 
-# What causes you to become Incapacitated?
-### -----------------------------------  
+## What causes you to become Incapacitated?
 A player will become incapacitated when they have taken sufficient damage in one or both of their legs, while also factoring in the players pain, bleed rate and blood loss to a lesser degree.
 
 However, it isn't decided by a simple damage threshold.
 Instead, it adjusts how wounded one leg needs to be in order to incapacitate the player based on how wounded the other leg is.
-To do this, each leg is assigned one of 5 'levels' based on the type, size, and to a lesser degree amount, of untreated wounds that it has.
+To do this, each leg is assigned one of 5 "damage states", which is based on the type, size, and to a lesser degree amount of untreated wounds that are on that leg.
 In order of severity: None, Minor, Major, Critical, Catastrophic.
 
 As an example, if one leg is wounded to a 'Catastrophic' degree, then it alone can be enough to incapacitate the player.
@@ -34,10 +33,34 @@ Similarly, 'Major' wounds on both legs will incapacitate the player, but enough 
 This is further expanded when pain, bleed rate and blood loss are factored in. If the player is in enough pain, is bleeding too quickly and/or has lost too much blood, the player can be incapacitated even if the wounds on their legs would otherwise be insufficient to incapacitate them.
 These 3 factors are commonly referred to as "Body Wounds", as they represent wounds across the entire body, rather than just one part/limb.
 Body Wounds are also a requirement for the last of way that players can be incapacitated, which occurs when both legs have enough 'Minor' wounds as well as some 'Minor' Body Wounds.
-### -----------------------------------  
 
-### The basics
-*If something is in Italics, it means that there is a CBA setting to enable/disable it.*
+## How does it work?
+When checking if a player should be incapacitated, BAL uses the list of wounds on each leg (As well as their Body Wounds) that the player sees in the ACE medical menu, rather than the amount of damage that those wounds represent.   
+This allows the players to directly see what is causing them to be incapacitated, and gives much more control over what wound types are considered in the calculation, and how impactful they are.   
+However, that list of wounds does need to be simplified in some way so that the mod doesnt need a super complex logic system that massively impacts the server performance.  
+
+### Wound Levels
+To solve this, we assign a "Wound Level" to each type and size of ACE Wound, via the CBA settings, and use the amount of each "Wound Level" rather than the wounds themselves. There are 5 Wound Levels within BAL: Ignored, Minor, Major, Critical, Catastrophic.  
+The amount of wounds per "Wound Level" is then simplified further into a single value called the 'Leg Wound Level', which practically uses the same 5 levels as the 'Wound Levels'.   
+This is done in one of two ways, depending on if "Stackable Wounds" is enabled in the CBA settings or not.   
+
+If "Stackable Wounds" is disabled, then it simply finds the highest Wound Level that is present and sets the 'Leg State' to be that level, regardless of if there is more than one of any type.  
+> The players left leg has 3 Medium Avulsions and 1 Large Avulsion. A Medium Avulsions is set to be a "Minor" wound, while a Large Avulsion is set to be a "Major" wound. Therefore, the players left 'Leg Wound Level' is considered to be "Major". 
+
+However, if "Stackable Wounds" is enabled, then the amount of Wound Level does actually matter. 
+
+###------------- Text Graveyard   ---------------------
+BALs internal logic uses 3 variables, one for each leg and one for the body, to decide if the player should be incapacitated or not. They represent the total serverity of the wounds in that area, and are called the 'Leg State' and 'Body State' respecitevly.  
+As you can probably guess, these States are calculated using the 
+
+
+### What are the Incapaciation Criteria? 
+A player will be incapacitated when atleast one of 4 criteria are met. 
+
+
+
+As previously mentioned, a player will become incapacitated when their leg wounds and/or body wounds are at high enough levels to satisy one of the 4 incapacitation critera. 
+
 
 Whenever a player is wounded, BAL first checks if either, or both, of their legs have been wounded. 
 
@@ -60,7 +83,7 @@ Each combination of size and type (Avulsion, Velocity Wound, Bruise ect.) of ACE
 MOVE TO THE "LONG" EXPLANATION:
 BAL uses two main systems in order to check if the player should be incapacitated, and to apply the incap
 The first handles the players legs, and is only activated when one of the players legs are wounded or treated. This system is more performance intensive, so it is used sparingly so that we dont lag out the players/server.
-
+###----------------------------------
 
 ### Credits 
 Raoden/superjes1, the programmer behind this mod!  
