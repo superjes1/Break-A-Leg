@@ -1,4 +1,4 @@
-## Break A Leg
+# Break A Leg
 Break A Leg adds a proper immobilisation system into Arma using the ACE medical framework.
 
 What does this mean?
@@ -6,7 +6,7 @@ What does this mean?
 More or less, when you get shot in your legs enough, you won't be able to stand back up until you heal your wounds. 
 Think of it as a more active ACE Unconscious state, you can still communicate and shoot back, but moving anywhere quickly is no longer an option.
 
-### Features! 
+## Features! 
 * Incapacitation system that stops the player from moving after they take to much damage!
 * Extensive CBA settings that gives you near complete control over just about everything this mod does!
 * Built in support for Fractures, Pain, Bleeding Rate and Bloodloss!
@@ -18,7 +18,24 @@ Think of it as a more active ACE Unconscious state, you can still communicate an
 * Funny Ragdolls!
 * The tears of your Players!
 
-## How does it work? | The Medium Version
+# How does it work?
+### -----------------------------------  
+A player will become incapacitated when they have taken sufficient damage in one or both of their legs, while also factoring in the players pain, bleed rate and blood loss to a lesser degree.
+
+However, it isn't decided by a simple damage threshold.
+Instead, it adjusts how wounded one leg needs to be in order to incapacitate the player based on how wounded the other leg is.
+To do this, each leg is assigned one of 5 'levels' based on the type, size, and to a lesser degree amount, of untreated wounds that it has.
+In order of severity: None, Minor, Major, Critical, Catastrophic.
+
+As an example, if one leg is wounded to a 'Catastrophic' degree, then it alone can be enough to incapacitate the player.
+However, if that leg is only in a 'Critical' state instead, then the other leg only needs enough 'Minor' wounds in order for that player to become incapacitated.
+Similarly, 'Major' wounds on both legs will incapacitate the player, but enough 'Major' wounds on one leg and enough 'Minor' wounds on the other will not.
+
+This is further expanded when pain, bleed rate and blood loss are factored in. If the player is in enough pain, is bleeding too quickly and/or has lost too much blood, the player can be incapacitated even if the wounds on their legs would otherwise be insufficient to incapacitate them.
+These 3 factors are commonly referred to as "Body Wounds", as they represent wounds across the entire body, rather than just one part/limb.
+Body Wounds are also a requirement for the last of way that players can be incapacitated, which occurs when both legs have enough 'Minor' wounds as well as some 'Minor' Body Wounds.
+### -----------------------------------  
+
 ### The basics
 *If something is in Italics, it means that there is a CBA setting to enable/disable it.*
 
@@ -36,13 +53,14 @@ as well as some factors that effect the entire body like pain, and then runs som
 If they should be incapacitated, the player will then fall over, scream out in pain and will be unable to get back up until their wounds have been healed.  
 If the player attempts to stand up before their wounds are healed, they will simply fall back down onto the ground. 
 
-### Wound Levels
-Rather than use a threshold system like ACE, BAL relies on a 5 tiered "Wound Level" system in order to determine how wounded the player is.
-Each type and size of ACE wound is assigned one of these 5 levels, through the CBA settings, which BAL uses to determine how wounded each leg is, and if the wounds are sufficent enough to incapacitate the player. 
+## Wound Levels
+Break A Leg relies on a 5 tiered "Wound Level" system in order to determine how wounded the player is, rather than the somewhat arbitrary damage thresholds like the rest of ACE or AWR. 
+Each combination of size and type (Avulsion, Velocity Wound, Bruise ect.) of ACE wound is assigned one of 5 "Wound Levels" (Ignored, Minor, Major, Critical, Catastrophic) via the CBA settings. which BAL uses to determine how wounded each leg is, and if the wounds are sufficent enough to incapacitate the player. 
 
-### Stackable Wounds
+### Stacking Wounds
 
-### Body State
+
+## Body State
 
 MOVE TO THE "LONG" EXPLANATION:
 BAL uses two main systems in order to check if the player should be incapacitated, and to apply the incap
