@@ -45,7 +45,9 @@ The amount of wounds per "Wound Level" is then simplified further into a single 
 This is done in one of two ways, depending on if "Stackable Wounds" is enabled in the CBA settings or not.   
 
 If "Stackable Wounds" is disabled, then it simply finds the highest Wound Level that is present and sets the 'Leg State' to be that level, regardless of if there is more than one of any type.  
-> The players left leg has 3 Medium Avulsions and 1 Large Avulsion. A Medium Avulsions is set to be a "Minor" wound, while a Large Avulsion is set to be a "Major" wound. Therefore, the players left 'Leg Wound Level' is considered to be "Major". 
+> The players left leg has 3 Medium Avulsions and 1 Large Avulsion.   
+> A Medium Avulsions is set to be a "Minor" wound, while a Large Avulsion is set to be a "Major" wound.   
+> Therefore, the players left 'Leg Wound Level' is considered to be "Major". 
 
 However, if "Stackable Wounds" is enabled, then the amount of Wound Level does actually matter. 
 
