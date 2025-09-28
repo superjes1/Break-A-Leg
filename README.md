@@ -51,6 +51,9 @@ If "Stackable Wounds" is disabled, then it simply finds the highest Wound Level 
 
 However, if "Stackable Wounds" is enabled, then the amount of Wound Level does actually matter. 
 
+
+
+
 ###------------- Text Graveyard   ---------------------
 BALs internal logic uses 3 variables, one for each leg and one for the body, to decide if the player should be incapacitated or not. They represent the total serverity of the wounds in that area, and are called the 'Leg State' and 'Body State' respecitevly.  
 As you can probably guess, these States are calculated using the 
