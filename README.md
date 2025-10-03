@@ -34,12 +34,12 @@ This is further expanded when pain, bleed rate and blood loss are factored in. I
 These 3 factors are commonly referred to as "Body Wounds", as they represent wounds across the entire body, rather than just one part/limb.
 Body Wounds are also a requirement for the last of way that players can be incapacitated, which occurs when both legs have enough 'Minor' wounds as well as some 'Minor' Body Wounds.
 
-## How does it work?
+## How does it work?/CBA Settings
 When checking if a player should be incapacitated, BAL uses the list of wounds on each leg (As well as their Body Wounds) that the player sees in the ACE medical menu, rather than the amount of damage that those wounds represent.   
 This allows the players to directly see what is causing them to be incapacitated, and gives much more control over what wound types are considered in the calculation, and how impactful they are.   
 However, that list of wounds does need to be simplified in some way so that the mod doesnt need a super complex logic system that massively impacts the server performance.  
 
-### Wound Levels
+### Wound Levels/Stackable Wounds
 To solve this, we assign a "Wound Level" to each type and size of ACE Wound, via the CBA settings, and use the amount of each "Wound Level" rather than the wounds themselves. There are 5 Wound Levels within BAL: Ignored, Minor, Major, Critical, Catastrophic.  
 The amount of wounds per "Wound Level" is then simplified further into a single value called the 'Leg Wound Level', which practically uses the same 5 levels as the 'Wound Levels'.   
 This is done in one of two ways, depending on if "Stackable Wounds" is enabled in the CBA settings or not.   
@@ -52,7 +52,7 @@ If "Stackable Wounds" is disabled, then it simply finds the highest Wound Level 
 However, if "Stackable Wounds" is enabled, then the amount of Wound Level does actually matter. 
   
   
-  
+### Incapacitation Logic  
   
 ###------------- Text Graveyard   ---------------------
 BALs internal logic uses 3 variables, one for each leg and one for the body, to decide if the player should be incapacitated or not. They represent the total serverity of the wounds in that area, and are called the 'Leg State' and 'Body State' respecitevly.  
