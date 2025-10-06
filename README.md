@@ -30,16 +30,17 @@ As an example, if one leg is wounded to a 'Catastrophic' degree, then it alone c
 However, if that leg is only in a 'Critical' state instead, then the other leg only needs enough 'Minor' wounds in order for that player to become incapacitated.
 Similarly, 'Major' wounds on both legs will incapacitate the player, but enough 'Major' wounds on one leg and enough 'Minor' wounds on the other will not.
 
-This is further expanded when pain, bleed rate and blood loss are factored in. If the player is in enough pain, is bleeding too quickly and/or has lost too much blood, the player can be incapacitated even if the wounds on their legs would otherwise be insufficient to incapacitate them.
-These 3 factors are commonly referred to as "Body Wounds", as they represent wounds across the entire body, rather than just one part/limb.
-Body Wounds are also a requirement for the last of way that players can be incapacitated, which occurs when both legs have enough 'Minor' wounds as well as some 'Minor' Body Wounds.
+This is further expanded when pain, bleed rate and blood loss are factored in.   
+If the player is in enough pain, is bleeding too quickly and/or has lost too much blood, the player can be incapacitated even if the wounds on their legs would otherwise be insufficient to incapacitate them.   
+These 3 factors are collectively referred to as the players "Body Wounds", as they represent wounds across the entire body, rather than just one limb.   
+Body Wounds are also a requirement for the last of way that players can be incapacitated, which occurs when both legs have enough 'Minor' wounds as well as some 'Minor' Body Wounds.   
 
 ## How does it work?/CBA Settings
 When checking if a player should be incapacitated, BAL uses the list of wounds on each leg (As well as their Body Wounds) that the player sees in the ACE medical menu, rather than the amount of damage that those wounds represent.   
 This allows the players to directly see what is causing them to be incapacitated, and gives much more control over what wound types are considered in the calculation, and how impactful they are.   
 However, that list of wounds does need to be simplified in some way so that the mod doesnt need a super complex logic system that massively impacts the server performance.  
 
-### Wound Levels/Stackable Wounds
+### Wound Levels
 To solve this, we assign a "Wound Level" to each type and size of ACE Wound, via the CBA settings, and use the amount of each "Wound Level" rather than the wounds themselves. There are 5 Wound Levels within BAL: Ignored, Minor, Major, Critical, Catastrophic.  
 The amount of wounds per "Wound Level" is then simplified further into a single value called the 'Leg Wound Level', which practically uses the same 5 levels as the 'Wound Levels'.   
 This is done in one of two ways, depending on if "Stackable Wounds" is enabled in the CBA settings or not.   
@@ -49,9 +50,24 @@ If "Stackable Wounds" is disabled, then it simply finds the highest Wound Level 
 > A Medium Avulsions is set to be a "Minor" wound, while a Large Avulsion is set to be a "Major" wound.   
 > Therefore, the players left 'Leg Wound Level' is considered to be "Major". 
 
-However, if "Stackable Wounds" is enabled, then the amount of Wound Level does actually matter. 
-  
-  
+### Stackable Wounds  
+The Stackable Wounds system makes it so that multiple Wounds of the same Wound Level, or higher, need to be stacked together in order to incapacitate the player.  
+It counts how many wounds per Wound Level are present on the leg, including when there are multiple of the same size and type of wound.  
+Then it checks if the amount of Critical Wounds is greater than or equal to the "Critical Wound Incapacitation Amount", and if there is 'Leg Wound Level' is considered to be "Critical".   
+If there is not enough then it then repeats the process for Major PLUS Critical Wounds, and compares it "Major Wound Incapacitation Amount".  
+Assuming there isnt enough, it will then check "Minor Wound Incapacitation Amount" against the sum of Minor, Major and Critial Wounds.  
+> The players left leg has 3 Medium Avulsions and 1 Large Avulsion.   
+> A Medium Avulsions is set to be a "Minor" wound, while a Large Avulsion is set to be a "Major" wound.   
+> The player has 0 Critical Wounds and the "Critical Wound Incapacitation Amount" is set to 1, so their Major Wounds need to be checked.   
+> The player has 1 Major Wound and the "Major Wound Incapacitation Amount" is set to 2, so their Minor Wounds need to be checked.   
+> The player has 4 Minor Wounds and the "Minor Wound Incapacitation Amount" is set to 4.  
+> Therefore, the players left 'Left Leg Wound Level' is considered to be "Minor".  
+
+### Body Wounds
+Unlike Leg Wounds, Body Wounds are not attached to one specific limb, so they need to be handled a little bit differently. 
+
+
+
 ### Incapacitation Logic  
   
 ###------------- Text Graveyard   ---------------------
