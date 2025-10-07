@@ -64,7 +64,12 @@ Assuming there isnt enough, it will then check "Minor Wound Incapacitation Amoun
 > Therefore, the players left 'Left Leg Wound Level' is considered to be "Minor".  
 
 ### Body Wounds
-Unlike Leg Wounds, Body Wounds are not attached to one specific limb, so they need to be handled a little bit differently. 
+The Body Wounds system is forced to use thresholds due to how ACE is coded, so it is handled in a different way than Leg Wounds are. 
+*Explanation goes here*
+In theory, this approach allows for the Body Wounds to be an important factor in incapacitation, while also being consistant and clear enough for players to understand/manage. 
+
+However, in practice it does have one large issue, it is nearly impossible to find that balance. 
+This is due to how each of the body Wounds interacts with going unconcious. 
 
 
 
