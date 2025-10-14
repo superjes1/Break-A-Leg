@@ -51,7 +51,7 @@ If "Stackable Wounds" is disabled, then it simply finds the highest Wound Level 
 > Therefore, the players left 'Leg Wound Level' is considered to be "Major". 
 
 For Body Wounds, we use the pre-existing threshold levels used by the ACE medical menu to determine the severity of the Wound.
-This allows the player to see the current state of their Body Wounds via 
+This allows the player to see the current state of their Body Wounds via the ACE medical menu, which lets the mod feel consistant. 
 For example, Pain is split into 4 levels: No Pain, Mild Pain, Moderate Pain, Severe Pain. 
 
 
