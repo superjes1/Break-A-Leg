@@ -50,6 +50,11 @@ If "Stackable Wounds" is disabled, then it simply finds the highest Wound Level 
 > A Medium Avulsions is set to be a "Minor" wound, while a Large Avulsion is set to be a "Major" wound.   
 > Therefore, the players left 'Leg Wound Level' is considered to be "Major". 
 
+For Body Wounds, we use the pre-existing threshold levels used by the ACE medical menu to determine the severity of the Wound.
+This allows the player to see the current state of their Body Wounds via 
+For example, Pain is split into 4 levels: No Pain, Mild Pain, Moderate Pain, Severe Pain. 
+
+
 ### Stackable Wounds  
 The Stackable Wounds system makes it so that multiple Wounds of the same Wound Level, or higher, need to be stacked together in order to incapacitate the player.  
 It counts how many wounds per Wound Level are present on the leg, including when there are multiple of the same size and type of wound.  
@@ -63,16 +68,7 @@ Assuming there isnt enough, it will then check "Minor Wound Incapacitation Amoun
 > The player has 4 Minor Wounds and the "Minor Wound Incapacitation Amount" is set to 4.  
 > Therefore, the players left 'Left Leg Wound Level' is considered to be "Minor".  
 
-### Body Wounds
-The Body Wounds system is forced to use thresholds due to how ACE is coded, so it is handled in a different way than Leg Wounds are. 
-*Explanation goes here*
-In theory, this approach allows for the Body Wounds to be an important factor in incapacitation, while also being consistant and clear enough for players to understand/manage. 
-
-However, in practice it does have one large issue, it is nearly impossible to find that balance. 
-This is due to how each of the body Wounds interacts with going unconcious. 
-
-
-
+This system also works for Body Wounds, though with a few minor changes. 
 ### Incapacitation Logic  
   
 ###------------- Text Graveyard   ---------------------
