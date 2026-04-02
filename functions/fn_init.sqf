@@ -27,10 +27,17 @@ if (BAL_Debug_Toggle) then {
                 };
 
                 if (BAL_Ragdoll_Toggle) then {
+                    _text = format ["[BAL] %1: Ragdoll enabled",name _unit];
+                    [_text] remoteExec ["diag_log",2];
                     [_unit, true] call ACEFUNC(medical_engine,setUnconsciousAnim);
                     [{
-                        if (IS_UNCONSCIOUS(_this)) then {
+                        if !(IS_UNCONSCIOUS(_this)) then {
+                            _text = format ["[BAL] %1: Ragdoll Disabled",name _this];
+                            [_text] remoteExec ["diag_log",2];
                             [_this, false] call ACEFUNC(medical_engine,setUnconsciousAnim);
+                        } else {
+                            _text = format ["[BAL] %1: Ragdoll NOT Disabled - Person is unconcious",name _this];
+                            [_text] remoteExec ["diag_log",2];
                         };
                     },_unit,2] call CBA_fnc_waitAndExecute;
                 };
@@ -52,7 +59,8 @@ if (BAL_Debug_Toggle) then {
     _unit = _this select 1;
     if (BAL_Full_Toggle && (alive _unit && isPlayer _unit && _unit == player)) then {
         if (BAL_Debug_Toggle) then {
-            diag_log format ["[BAL] Treatment Succeded | Wound Healed: %1",_this select 2];
+            _text = format ["[BAL] %1: Treatment Succeded | Wound Healed: %2",name _unit,_this select 2];
+            [_text] remoteExec ["diag_log",2];
         };
         _mainWound = toLower (_this select 2);
         
@@ -77,7 +85,8 @@ if (BAL_Debug_Toggle) then {
 ["ace_medical_treatment_fullHealLocalMod",{
     if (BAL_Full_Toggle) then {
         if (BAL_Debug_Toggle) then {
-            diag_log "[BAL] Full Heal";
+            _text = format ["[BAL] %1: Full Heal", name player];
+            [_text] remoteExec ["diag_log",2];
         };
         player setVariable ["BAL_leftStatus", 0];
         player setVariable ["BAL_rightStatus", 0];
@@ -127,7 +136,8 @@ if (BAL_Debug_Toggle) then {
                 }foreach (_this select 1); //Does each limb
 
                 if (BAL_Debug_Toggle) then {
-                    diag_log format ["[BAL] Wound Received | Wounded Limbs: %1",_limbs];
+                    _text = format ["[BAL] %1: Wound Received | Wounded Limbs: %2",name _unit,_limbs];
+                    [_text] remoteExec ["diag_log",2];
                 };
 
                 //Make sure that one of the limbs we care about was damaged before trying to check them.
