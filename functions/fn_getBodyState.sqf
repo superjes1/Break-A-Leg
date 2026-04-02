@@ -78,6 +78,9 @@ if (BAL_Bloodloss_Toggle) then {
 	};
 };
 
-if (BAL_Debug_Toggle) then {diag_log format ["[BAL] Body Status | Pain: %1 - Bleeding: %2 - Bloodloss: %3",_painStatus,_bleedStatus,_bloodlossStatus] };
+if (BAL_Debug_Toggle) then {
+	_text = format ["[BAL] %1: Body Status | Pain: %2 - Bleeding: %3 - Bloodloss: %4",name _unit,_painStatus,_bleedStatus,_bloodlossStatus];
+	[_text] remoteExec ["diag_log",2];
+};
 
 [_painStatus,_bleedStatus,_bloodlossStatus];
