@@ -46,7 +46,11 @@ _reason = 0;
 //There is almost certainly a better way of doing this, but im on a bit of a time crunch atm and this is the easiest way, so its what im doing. 
 if (BAL_BothLegsWounded_IncapacitateBypass) then {
 	if (_legMax == 4 || _bodyStatusMax == 4) then {
-		_incapacitate = true; _reason = 4; if (BAL_Debug_Toggle) then { diag_log "[BAL] Catastrophic level wound."};
+		_incapacitate = true; _reason = 4; 
+		if (BAL_Debug_Toggle) then { 
+			_text = format ["[BAL] %1: Catastrophic level wound, One wounded | Left: %2 Right: %3 Body: %4 ",name _unit,_leftStatus,_rightStatus,_bodyStatusMax];
+			[_text] remoteExec ["diag_log",2];
+		};
 	};
 };
 
@@ -55,7 +59,11 @@ if (((BAL_BothLegsWounded_Toggle ) && (_legMin >= 1)) || (!BAL_BothLegsWounded_T
 	//Check if there is an "Catastrophic" level wound. 
 	//These immobalise by themselves, so there is no need to do fancy logic. 
 	if (_legMax == 4 || _bodyStatusMax == 4) then {
-		_incapacitate = true; _reason = 4; if (BAL_Debug_Toggle) then {diag_log "[BAL] Catastrophic level wound."};
+		_incapacitate = true; _reason = 4;
+		if (BAL_Debug_Toggle) then {
+			_text = format ["[BAL] %1: Catastrophic level wound + Both Wounded | Left: %2 Right: %3 Body: %4 ",name _unit,_leftStatus,_rightStatus,_bodyStatusMax];
+			[_text] remoteExec ["diag_log",2];
+		};
 	}else{
 		//If there isnt an incapacitation level wound, then we need to check for the other potential incapacitation causes.
 		//Start at the top and work our way down, aka critical wound logic first, as they are the most important to imform the players about. 
@@ -67,15 +75,27 @@ if (((BAL_BothLegsWounded_Toggle ) && (_legMin >= 1)) || (!BAL_BothLegsWounded_T
 			//Check 2: A critical Leg wound AND a minor body wound OR a minor Leg wound
 			((_legMax == 3) && ((_bodyStatusMax >= 1) || (_legMin >= 1)))
 			) then {
-				_incapacitate = true; _reason = 3; if (BAL_Debug_Toggle) then {diag_log "[BAL] Critical + Minor"};
+				_incapacitate = true; _reason = 3; 
+				if (BAL_Debug_Toggle) then {
+					_text = format ["[BAL] %1: Critical + Minor | Left: %2 Right: %3 Body: %4 ",name _unit,_leftStatus,_rightStatus,_bodyStatusMax];
+					[_text] remoteExec ["diag_log",2];
+				};
 		} else {
 			//If one leg has a major wound AND the other has a major wound OR there is major body damage, then incapacitate.
 			if ((_legMax >= 2) && ((_bodyStatusMax >= 2) || (_legMin >= 2)) ) then {
-				_incapacitate = true; _reason = 2; if (BAL_Debug_Toggle) then {diag_log "[BAL] Double Major"};
+				_incapacitate = true; _reason = 2;
+				if (BAL_Debug_Toggle) then {
+					_text = format ["[BAL] %1: Double Major | Left: %2 Right: %3 Body: %4 ",name _unit,_leftStatus,_rightStatus,_bodyStatusMax];
+					[_text] remoteExec ["diag_log",2];
+				};
 			} else {
 				//If there is Minor wounds on both legs and minor body damage, then incapacitate.
 				if ((_legMax >= 1) && (_legMin >= 1) && (_bodyStatusMax >= 1)) then {
-					_incapacitate = true; _reason = 1; if (BAL_Debug_Toggle) then {diag_log "[BAL] Triple Minor"};
+					_incapacitate = true; _reason = 1;
+					if (BAL_Debug_Toggle) then {
+						_text = format ["[BAL] %1: Triple Minor | Left: %2 Right: %3 Body: %4 ",name _unit,_leftStatus,_rightStatus,_bodyStatusMax];
+						[_text] remoteExec ["diag_log",2];
+					};
 				};
 			};
 		};

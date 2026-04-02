@@ -14,4 +14,4 @@
 [] call compile preprocessFileLineNumbers '\bal_main\addon_settings_body.sqf';
 
 //Debug
-["BAL_Debug_Toggle", "CHECKBOX", ["Toggle Debug RPT Logs", ""], ["Break A Leg","zDebug"], true] call CBA_fnc_addSetting;
+["BAL_Debug_Toggle", "CHECKBOX", ["Toggle Debug RPT Logs - May cause decrease in server performance!", ""], ["Break A Leg","zDebug"], true] call CBA_fnc_addSetting;

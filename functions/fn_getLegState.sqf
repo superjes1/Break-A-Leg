@@ -184,6 +184,9 @@ if (_mainWound == "RightLeg" || _mainWound == "rightleg" || _mainWound == "all")
 
 _legStatus = [_leftStatus,_rightStatus];
 
-if (BAL_Debug_Toggle) then {diag_log format ["[BAL] Leg Status | Left: %1 - Right: %2",_legStatus select 0,_legStatus select 1] };
+if (BAL_Debug_Toggle) then {
+	_text = format ["[BAL] %1: Leg Status | Left: %2 - Right: %3",name _unit,_legStatus select 0,_legStatus select 1];
+	[_text] remoteExec ["diag_log",2];
+};
 
 _legStatus;
