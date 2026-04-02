@@ -12,10 +12,22 @@ if (!(_unit getVariable ["BAL_isIncapacitated", false]) && (_incapacitate)) then
 	if (vehicle _unit == _unit) then {
 		[_unit, true] call ACEFUNC(medical_engine,setUnconsciousAnim);
 
+		_text = format ["[BAL] %1: Ragdoll enabled",name _unit];
+		[_text] remoteExec ["diag_log",2];
+
 		[_unit] call ACEFUNC(common,setProne);
 
 		_unit setVariable ["BAL_Cooldown", (serverTime + 2)];
-		[{[_this, false] call ACEFUNC(medical_engine,setUnconsciousAnim)},_unit,2] call CBA_fnc_waitAndExecute;
+		[{
+			if !(IS_UNCONSCIOUS(_this)) then {
+				_text = format ["[BAL] %1: Ragdoll Disabled",name _this];
+				[_text] remoteExec ["diag_log",2];
+				[_this, false] call ACEFUNC(medical_engine,setUnconsciousAnim);
+			} else {
+				_text = format ["[BAL] %1: Ragdoll NOT Disabled - Person is unconcious",name _this];
+				[_text] remoteExec ["diag_log",2];
+			};
+		},_unit,2] call CBA_fnc_waitAndExecute;
 	} else {
 		//Give them an alert so that they know they are incapacitated.
 		[["bal_main\UI\broken_bone.paa",2, [255,0,0],true],["You are Incapacitated"]] call CBA_fnc_notify;
