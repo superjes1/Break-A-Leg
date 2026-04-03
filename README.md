@@ -56,9 +56,9 @@ This allows the player to see the current state of their Body Wounds via the ACE
 For example, Pain is split into 4 levels: No Pain, Mild Pain, Moderate Pain, Severe Pain. 
 
 ### Incapacitation Logic
-Now that the damage states of each leg and the body has been calculated, we can determine if the player should be incapacitated or not. 
-To simplfy it, the more wounded one part of your body is, the less wounded the rest of your body needs to be in order to become incapacitated.
-However, by default, both legs need to be wounded to atleast a Minor level in order for the player to become incapacitated, with one exception. 
+Now that the damage states of each leg and the body has been calculated, we can determine if the player should be incapacitated or not.    
+To simplfy it, the more wounded one part of your body is, the less wounded the rest of your body needs to be in order to become incapacitated.  
+However, by default, both legs need to be wounded to atleast a Minor level in order for the player to become incapacitated, with one exception.   
 
 If anything has been damaged to a "Catastrophic" level, the player will become incapacitated, regardless of how wounded they are elsewhere on their body.  
 If one leg has been damaged to a "Critical" level, and the other has been damaged to atleast a "Minor" level, then player will become incapacitated.  
