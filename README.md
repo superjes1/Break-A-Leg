@@ -35,13 +35,14 @@ If the player is in enough pain, is bleeding too quickly and/or has lost too muc
 These 3 factors are collectively referred to as the players "Body Wounds", as they represent wounds across the entire body, rather than just one limb.   
 Body Wounds are also a requirement for the last of way that players can be incapacitated, which occurs when both legs have enough 'Minor' wounds as well as some 'Minor' Body Wounds.   
 
-## How does it work?/CBA Settings
+## How does it work?
 When checking if a player should be incapacitated, BAL uses the list of wounds on each leg (As well as their Body Wounds) that the player sees in the ACE medical menu, rather than the amount of damage that those wounds represent.   
 This allows the players to directly see what is causing them to be incapacitated, and gives much more control over what wound types are considered in the calculation, and how impactful they are.   
 However, that list of wounds does need to be simplified in some way so that the mod doesnt need a super complex logic system that massively impacts the server performance.  
 
 ### Wound Levels
-To solve this, we assign a "Wound Level" to each type and size of ACE Wound, via the CBA settings, and use the amount of each "Wound Level" rather than the wounds themselves. There are 5 Wound Levels within BAL: Ignored, Minor, Major, Critical, Catastrophic.  
+To solve this, we assign a "Wound Level" to each type and size of ACE Wound, via the CBA settings, and use the amount of each "Wound Level" rather than the wounds themselves. 
+There are 5 Wound Levels within BAL: Ignored, Minor, Major, Critical, Catastrophic.  
 The amount of wounds per "Wound Level" is then simplified further into a single value called the 'Leg Wound Level', which practically uses the same 5 levels as the 'Wound Levels'.   
 This is done in one of two ways, depending on if "Stackable Wounds" is enabled in the CBA settings or not.   
 
@@ -54,6 +55,18 @@ For Body Wounds, we use the pre-existing threshold levels used by the ACE medica
 This allows the player to see the current state of their Body Wounds via the ACE medical menu, which lets the mod feel consistant. 
 For example, Pain is split into 4 levels: No Pain, Mild Pain, Moderate Pain, Severe Pain. 
 
+### Incapacitation Logic
+Now that the damage states of each leg and the body has been calculated, we can determine if the player should be incapacitated or not. 
+To simplfy it, the more wounded one part of your body is, the less wounded the rest of your body needs to be in order to become incapacitated.
+However, by default, both legs need to be wounded to atleast a Minor level in order for the player to become incapacitated, with one exception. 
+
+If anything has been damaged to a "Catastrophic" level, the player will become incapacitated, regardless of how wounded they are elsewhere on their body.
+If one leg has been damaged to a "Critical" level, and the other has been damaged to atleast a "Minor" level, then player will become incapacitated. 
+If the player still isnt incapacitated, then it checks to see if both legs have atleast "Major" damage done to them, and if so incapacitates them.
+If not, it will do one final check to see if both legs have taken "Minor" levels of damage, and there are alteast "Minor" Body Wounds present. 
+
+It should be noted that damage levels do scale downwards, so a "Critical" wound on one leg and a "Major" on the other would satisfy both the second and third critera. 
+Similarly, Body Wounds can be used as a subsitute for higher level leg wounds, however this only matters if you disable the requirement for both legs to be wounded. 
 
 ### Stackable Wounds  
 The Stackable Wounds system makes it so that multiple Wounds of the same Wound Level, or higher, need to be stacked together in order to incapacitate the player.  
