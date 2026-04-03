@@ -60,13 +60,13 @@ Now that the damage states of each leg and the body has been calculated, we can 
 To simplfy it, the more wounded one part of your body is, the less wounded the rest of your body needs to be in order to become incapacitated.
 However, by default, both legs need to be wounded to atleast a Minor level in order for the player to become incapacitated, with one exception. 
 
-If anything has been damaged to a "Catastrophic" level, the player will become incapacitated, regardless of how wounded they are elsewhere on their body.
-If one leg has been damaged to a "Critical" level, and the other has been damaged to atleast a "Minor" level, then player will become incapacitated. 
-If the player still isnt incapacitated, then it checks to see if both legs have atleast "Major" damage done to them, and if so incapacitates them.
-If not, it will do one final check to see if both legs have taken "Minor" levels of damage, and there are alteast "Minor" Body Wounds present. 
+If anything has been damaged to a "Catastrophic" level, the player will become incapacitated, regardless of how wounded they are elsewhere on their body.  
+If one leg has been damaged to a "Critical" level, and the other has been damaged to atleast a "Minor" level, then player will become incapacitated.  
+If the player still isnt incapacitated, then it checks to see if both legs have atleast "Major" damage done to them, and if so incapacitates them.  
+If not, it will do one final check to see if both legs have taken "Minor" levels of damage, and there are alteast "Minor" Body Wounds present.   
 
-It should be noted that damage levels do scale downwards, so a "Critical" wound on one leg and a "Major" on the other would satisfy both the second and third critera. 
-Similarly, Body Wounds can be used as a subsitute for higher level leg wounds, however this only matters if you disable the requirement for both legs to be wounded. 
+It should be noted that damage levels do scale downwards, so a "Critical" wound on one leg and a "Major" on the other would satisfy both the second and third critera.   
+Similarly, Body Wounds can be used as a subsitute for higher level leg wounds, however this only matters if you disable the requirement for both legs to be wounded.   
 
 ### Stackable Wounds  
 The Stackable Wounds system makes it so that multiple Wounds of the same Wound Level, or higher, need to be stacked together in order to incapacitate the player.  
